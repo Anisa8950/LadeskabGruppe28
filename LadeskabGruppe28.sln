@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LadeskabGruppe28", "Ladeska
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LadeskabLibrary", "LadeskabLibrary\LadeskabLibrary.csproj", "{6FFE3D54-C6DA-4C09-A848-CBDCE5C13290}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LadeskabUnitTest", "LadeskabTest\LadeskabUnitTest.csproj", "{91972601-C9B7-4826-AB2C-BC357C2E1B54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ladeskab.Unit.Test", "Ladeskab.Unit.Test\Ladeskab.Unit.Test.csproj", "{582D916F-028A-4E36-BFED-862B02470E55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{6FFE3D54-C6DA-4C09-A848-CBDCE5C13290}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FFE3D54-C6DA-4C09-A848-CBDCE5C13290}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FFE3D54-C6DA-4C09-A848-CBDCE5C13290}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91972601-C9B7-4826-AB2C-BC357C2E1B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91972601-C9B7-4826-AB2C-BC357C2E1B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91972601-C9B7-4826-AB2C-BC357C2E1B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91972601-C9B7-4826-AB2C-BC357C2E1B54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{582D916F-028A-4E36-BFED-862B02470E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582D916F-028A-4E36-BFED-862B02470E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582D916F-028A-4E36-BFED-862B02470E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582D916F-028A-4E36-BFED-862B02470E55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
