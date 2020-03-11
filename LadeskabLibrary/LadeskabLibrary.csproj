@@ -44,8 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\ChargeControl.cs" />
+    <Compile Include="Implementation\Display.cs" />
+    <Compile Include="Implementation\Door.cs" />
+    <Compile Include="EventArgument.cs" />
+    <Compile Include="Interfaces\IDisplay.cs" />
+    <Compile Include="Interfaces\IDoor.cs" />
+    <Compile Include="Interfaces\ILogFile.cs" />
+    <Compile Include="Interfaces\IRFReader.cs" />
+    <Compile Include="Interfaces\IUsbCharger.cs" />
+    <Compile Include="Implementation\LogFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Implementation\RFReader.cs" />
+    <Compile Include="Controllers\StationControl.cs" />
+    <Compile Include="Implementation\UsbCharger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

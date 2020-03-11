@@ -1,8 +1,8 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Ladeskab.Unit.Test
 {
-    public class Tests
+    public class ChargeControlUnitTest
     {
         [SetUp]
         public void Setup()
