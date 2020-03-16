@@ -16,7 +16,8 @@ namespace LadeskabLibrary
 
     public class CurrentLevelEventArgs
     {
-        // Value in mA (milliAmpere)
-        public double CurrentLevel { get; set; }
+       // Value in mA (milliAmpere)
+        public double Current { get; set; }
+
     }
 }
