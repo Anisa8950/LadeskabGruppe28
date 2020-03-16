@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    public class Door
+    public class Door : IDoor
     {
+        public void LockDoor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnLockDoor()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    public class LogFile
+    public class LogFile : ILogFile
     {
+        public void LogDoorLocked(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LogDoorUnlocked(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
