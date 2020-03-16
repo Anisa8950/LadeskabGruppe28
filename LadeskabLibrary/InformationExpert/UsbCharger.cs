@@ -114,7 +114,7 @@ namespace LadeskabLibrary
 
         private void OnNewCurrent()
         {
-            CurrentLevelEvent?.Invoke(this, new CurrentLevelEventArgs() {CurrentLevel = this.CurrentValue});
+            CurrentLevelEvent?.Invoke(this, new CurrentLevelEventArgs() {Current = this.CurrentValue});
         }
     }
 }
