@@ -8,6 +8,8 @@ namespace LadeskabLibrary
 {
     public class DoorStateEventArgs
     {
+        public bool DoorState { set; get; }
+
     }
 
     public class RFDetectedEventArgs

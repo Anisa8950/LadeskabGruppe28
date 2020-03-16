@@ -8,5 +8,13 @@ namespace LadeskabLibrary
 {
     interface IDoor
     {
+
+        bool PresentDoorState();
+        event DoorStateChangedEvent();
+        void LockDoor();
+        void UnlockDoor();
+
+
+
     }
 }
