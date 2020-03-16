@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface IDisplay
+    public interface IDisplay
     {
+        void PrintConnectMobile();
+        void PrintScanRFID();
+        void PrintConnectingError();
+        void PrintOccupied();
+        void PrintRFIDError();
+        void PrintRemoveMobile();
     }
 }

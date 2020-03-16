@@ -8,5 +8,14 @@ namespace LadeskabLibrary
 {
     public class Display
     {
+        public void PrintConnectMobile()
+        {
+            Console.WriteLine("Tilslut mobil");
+        }
+
+        public void PrintScanRFID()
+        {
+            Console.WriteLine("");
+        }
     }
 }
