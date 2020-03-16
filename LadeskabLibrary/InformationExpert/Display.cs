@@ -25,12 +25,12 @@ namespace LadeskabLibrary
 
         public void PrintRemoveMobile()
         {
-            Console.WriteLine("Fjern mobiltelefon");
+            Console.WriteLine("Fjern mobiltelefon fra skab og luk døren");
         }
 
         public void PrintRFIDError()
         {
-            Console.WriteLine("RFID fejl");
+            Console.WriteLine("Forkert RFID tag");
         }
 
         public void PrintScanRFID()

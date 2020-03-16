@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface IUsbCharger
+    public interface IUsbCharger
     {
+        bool Connected { get; set; }
     }
 }
