@@ -9,28 +9,35 @@ namespace LadeskabLibrary
     public class ChargeControl
     {
         private IUsbCharger _usbCharger;
+        public double CurrentValue { get; set; }
         public ChargeControl(IUsbCharger usbCharger)
         {
             _usbCharger = usbCharger;
+            usbCharger.CurrentLevelChanged += HandleCurrentLevelChangedEvent;
+        }
+
+        private void HandleCurrentLevelChangedEvent(object sender, CurrentLevelEventArgs e)
+        {
+            CurrentValue = e.Current;
         }
 
         public bool IsConnected()
         {
-            if (_usbCharger.Connected)
+            if (CurrentValue<=0)
             {
-                return true;
+                return false;
             }
-            else return false;
+            else return true;
         }
 
         public void StartCharger()
         {
-
+            _usbCharger.StartCharging();
         }
 
         public void StopCharger()
         {
-
+            _usbCharger.StopCharging();
         }
 
     }

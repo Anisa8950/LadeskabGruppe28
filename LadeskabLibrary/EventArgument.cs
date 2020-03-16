@@ -16,5 +16,7 @@ namespace LadeskabLibrary
 
     public class CurrentLevelEventArgs
     {
+        public double Current { get; set; }
+
     }
 }
