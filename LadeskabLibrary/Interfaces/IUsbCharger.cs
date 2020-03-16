@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface IUsbCharger
+    public interface IUsbCharger
     {
         event EventHandler<CurrentLevelEventArgs> CurrentLevelChanged;
         double CurrentValue { get; set; }

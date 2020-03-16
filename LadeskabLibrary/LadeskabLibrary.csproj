@@ -45,19 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ChargeControl.cs" />
-    <Compile Include="Implementation\Display.cs" />
-    <Compile Include="Implementation\Door.cs" />
+    <Compile Include="InformationExpert\Display.cs" />
+    <Compile Include="InformationExpert\Door.cs" />
     <Compile Include="EventArgument.cs" />
     <Compile Include="Interfaces\IDisplay.cs" />
     <Compile Include="Interfaces\IDoor.cs" />
     <Compile Include="Interfaces\ILogFile.cs" />
     <Compile Include="Interfaces\IRFReader.cs" />
     <Compile Include="Interfaces\IUsbCharger.cs" />
-    <Compile Include="Implementation\LogFile.cs" />
+    <Compile Include="InformationExpert\LogFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Implementation\RFReader.cs" />
+    <Compile Include="InformationExpert\RFReader.cs" />
     <Compile Include="Controllers\StationControl.cs" />
-    <Compile Include="Implementation\UsbCharger.cs" />
+    <Compile Include="InformationExpert\UsbCharger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
