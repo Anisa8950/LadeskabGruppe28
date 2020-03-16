@@ -8,5 +8,7 @@ namespace LadeskabLibrary
 {
     interface IDoor
     {
+        void LockDoor();
+        void UnLockDoor();
     }
 }
