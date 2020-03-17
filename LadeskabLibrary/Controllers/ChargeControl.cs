@@ -13,7 +13,7 @@ namespace LadeskabLibrary
         public ChargeControl(IUsbCharger usbCharger)
         {
             _usbCharger = usbCharger;
-            usbCharger.CurrentLevelChanged += HandleCurrentLevelChangedEvent;
+            usbCharger.CurrentLevelEvent += HandleCurrentLevelChangedEvent;
         }
 
         private void HandleCurrentLevelChangedEvent(object sender, CurrentLevelEventArgs e)
