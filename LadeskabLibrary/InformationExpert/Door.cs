@@ -8,7 +8,7 @@ namespace LadeskabLibrary
 {
     public class Door: IDoor
     {
-        private bool PresentDoorState;
+        public bool PresentDoorState { get; set; }
 
         public event EventHandler<DoorStateEventArgs> DoorStateChangedEvent;
 

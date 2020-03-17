@@ -9,7 +9,7 @@ namespace LadeskabLibrary
     interface IDoor
     {
 
-        bool PresentDoorState;
+        bool PresentDoorState { get; set; }
         event EventHandler<DoorStateEventArgs> DoorStateChangedEvent;
 
         void LockDoor();
