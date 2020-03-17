@@ -6,16 +6,28 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    public class Door : IDoor
+    public class Door: IDoor
     {
+        private bool PresentDoorState;
+
+        public event EventHandler<DoorStateEventArgs> DoorStateChangedEvent;
+
+
         public void LockDoor()
         {
-            throw new NotImplementedException();
+         
         }
 
-        public void UnLockDoor()
+        public void UnlockDoor()
         {
-            throw new NotImplementedException();
+            
         }
+
+        private void OnDoorStateChanged(DoorStateEventArgs e)
+        {
+
+            DoorStateChangedEvent?.Invoke(this,e);
+        }
+
     }
 }

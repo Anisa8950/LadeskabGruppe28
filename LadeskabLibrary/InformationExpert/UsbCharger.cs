@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace LadeskabLibrary
 {
-    public class UsbChargerSimulator : IUsbCharger
+    public class UsbCharger : IUsbCharger
     {
         // Constants
         private const double MaxCurrent = 500.0; // mA
@@ -14,18 +18,16 @@ namespace LadeskabLibrary
 
         public event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
 
-        public double CurrentValue { get; private set; }
-
-        public bool Connected { get; private set; }
-        double IUsbCharger.CurrentValue { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        bool IUsbCharger.Connected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // The current current value 
+        public double CurrentValue { get; set; }
+        public bool Connected { get; set; }
 
         private bool _overload;
         private bool _charging;
         private System.Timers.Timer _timer;
         private int _ticksSinceStart;
 
-        public UsbChargerSimulator()
+        public UsbCharger()
         {
             CurrentValue = 0.0;
             Connected = true;
@@ -72,7 +74,8 @@ namespace LadeskabLibrary
             _overload = overload;
         }
 
-        public void StartCharge()
+
+        public void StartCharging()
         {
             // Ignore if already charging
             if (!_charging)
@@ -99,7 +102,7 @@ namespace LadeskabLibrary
             }
         }
 
-        public void StopCharge()
+        public void StopCharging()
         {
             _timer.Stop();
 
@@ -111,17 +114,7 @@ namespace LadeskabLibrary
 
         private void OnNewCurrent()
         {
-            CurrentLevelEvent?.Invoke(this, new CurrentLevelEventArgs() { Current = this.CurrentValue });
-        }
-
-        public void StartCharging()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void StopCharging()
-        {
-            throw new NotImplementedException();
+            CurrentLevelEvent?.Invoke(this, new CurrentLevelEventArgs() {Current = this.CurrentValue});
         }
     }
 }

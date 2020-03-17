@@ -8,6 +8,8 @@ namespace LadeskabLibrary
 {
     public class DoorStateEventArgs
     {
+        public bool DoorState { set; get; }
+
     }
 
     public class RFDetectedEventArgs
@@ -16,6 +18,7 @@ namespace LadeskabLibrary
 
     public class CurrentLevelEventArgs
     {
+       // Value in mA (milliAmpere)
         public double Current { get; set; }
 
     }

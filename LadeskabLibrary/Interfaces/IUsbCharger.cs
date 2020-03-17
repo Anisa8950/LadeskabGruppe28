@@ -9,6 +9,8 @@ namespace LadeskabLibrary
     public interface IUsbCharger
     {
         event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
+       
+        // The current current value 
         double CurrentValue { get; set; }
         bool Connected { get; set; }
         void StartCharging();
