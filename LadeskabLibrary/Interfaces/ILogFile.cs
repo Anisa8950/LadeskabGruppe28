@@ -8,5 +8,7 @@ namespace LadeskabLibrary
 {
     interface ILogFile
     {
+        void LogDoorLocked(string id);
+        void LogDoorUnlocked(string id);
     }
 }

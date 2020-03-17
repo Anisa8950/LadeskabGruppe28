@@ -10,6 +10,7 @@ namespace LadeskabLibrary
     {
         private IUsbCharger _usbCharger;
         public double CurrentValue { get; set; }
+
         public ChargeControl(IUsbCharger usbCharger)
         {
             _usbCharger = usbCharger;

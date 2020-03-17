@@ -37,7 +37,7 @@ namespace LadeskabLibrary
                     if (_charger.Connected)
                     {
                         _door.LockDoor();
-                        _charger.StartCharge();
+                        _charger.StartCharging();
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
                         {
@@ -62,8 +62,8 @@ namespace LadeskabLibrary
                     // Check for correct ID
                     if (id == _oldId)
                     {
-                        _charger.StopCharge();
-                        _door.UnlockDoor();
+                        _charger.StopCharging();
+                        _door.UnLockDoor();
                         using (var writer = File.AppendText(logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);

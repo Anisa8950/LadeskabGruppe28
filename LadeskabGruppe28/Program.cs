@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LadeskabLibrary;
 
 namespace LadeskabGruppe28
 {
@@ -10,6 +11,10 @@ namespace LadeskabGruppe28
     {
         static void Main(string[] args)
         {
+            LogFile test = new LogFile();
+            test.LogDoorLocked("123");
+            test.LogDoorUnlocked("321");
+            Console.WriteLine("Thing");
         }
     }
 }

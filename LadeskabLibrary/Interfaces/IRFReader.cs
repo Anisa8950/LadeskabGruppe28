@@ -8,5 +8,6 @@ namespace LadeskabLibrary
 {
     interface IRFReader
     {
+        void scan();
     }
 }
