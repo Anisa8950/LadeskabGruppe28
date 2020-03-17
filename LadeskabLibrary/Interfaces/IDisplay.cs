@@ -14,5 +14,8 @@ namespace LadeskabLibrary
         void PrintOccupied();
         void PrintRFIDError();
         void PrintRemoveMobile();
+        void PrintChargingError();
+        void PrintChargingMobile();
+        void PrintChargingComplete();
     }
 }
