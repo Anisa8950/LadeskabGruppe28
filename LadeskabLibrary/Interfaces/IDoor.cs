@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface IDoor
+    public interface IDoor
     {
 
         bool PresentDoorState { get; set; }

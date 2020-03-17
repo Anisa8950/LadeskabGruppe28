@@ -12,7 +12,8 @@ namespace LadeskabLibrary
 
         public void LogDoorLocked(string id)
         {
-            using (StreamWriter sw = new StreamWriter("C:\\Users\\stefi\\source\\repos\\LadeskabGruppe28", true))
+
+            using (StreamWriter sw = new StreamWriter(@"..\\..\\..\\LogFil.txt", true))
             {
                 try
                 {
