@@ -22,5 +22,12 @@ namespace LadeskabLibrary
         {
             
         }
+
+        private void OnDoorStateChanged(DoorStateEventArgs e)
+        {
+
+            DoorStateChangedEvent?.Invoke(this,e);
+        }
+
     }
 }
