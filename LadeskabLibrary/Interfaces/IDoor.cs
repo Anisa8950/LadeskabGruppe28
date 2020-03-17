@@ -10,6 +10,7 @@ namespace LadeskabLibrary
     {
 
         bool PresentDoorState;
+
         event EventHandler<DoorStateEventArgs> DoorStateChangedEvent;
 
         void LockDoor();
