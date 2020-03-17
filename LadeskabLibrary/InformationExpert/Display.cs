@@ -8,6 +8,21 @@ namespace LadeskabLibrary
 {
     public class Display : IDisplay
     {
+        public void PrintChargingComplete()
+        {
+            Console.WriteLine("Mobil er fuld opladt");
+        }
+
+        public void PrintChargingError()
+        {
+            Console.WriteLine("Fejl. Evt. kortslutning. Frakobel usb lader.");
+        }
+
+        public void PrintChargingMobile()
+        {
+            Console.WriteLine("Oplader mobil");
+        }
+
         public void PrintConnectingError()
         {
             Console.WriteLine("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt");

@@ -23,6 +23,17 @@ namespace LadeskabLibrary
            Console.WriteLine("Døren er ulåst"); 
         }
 
+        public void SetDoorState(bool newDoorState)
+        {
+
+            if (newDoorState!=PresentDoorState)
+            {
+                OnDoorStateChanged(new DoorStateEventArgs{DoorState = newDoorState});
+                PresentDoorState = newDoorState;
+
+            }
+        }
+        
         private void OnDoorStateChanged(DoorStateEventArgs e)
         {
             DoorStateChangedEvent?.Invoke(this,e);
