@@ -50,12 +50,12 @@ namespace LadeskabLibrary
                         _charger.StartCharging();
                         _oldId = id;
                         _logFile.LogDoorLocked(Convert.ToString(id));
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.PrintOccupied();
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.PrintConnectingError();
                     }
 
                     break;
@@ -70,17 +70,13 @@ namespace LadeskabLibrary
                     {
                         _charger.StopCharging();
                         _door.UnlockDoor();
-                        //using (var writer = File.AppendText(logFil))
-                        //{
-                        //    writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        //}
-
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _logFile.LogDoorUnlocked(Convert.ToString(id));
+                        _display.PrintRemoveMobile();
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.PrintRFIDError();
                     }
 
                     break;
@@ -88,5 +84,14 @@ namespace LadeskabLibrary
         }
 
         // Her mangler de andre trigger handlere
+        public void DoorOpen()
+        {
+
+        }
+
+        public void DoorClosed()
+        {
+
+        }
     }
 }
