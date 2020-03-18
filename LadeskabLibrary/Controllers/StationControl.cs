@@ -86,12 +86,18 @@ namespace LadeskabLibrary
         // Her mangler de andre trigger handlere
         public void DoorOpen()
         {
-
+            if(_state==LadeskabState.Available)
+            {
+                _display.PrintConnectMobile();
+            }
         }
 
         public void DoorClosed()
         {
-
+            if (_state == LadeskabState.Available)
+            {
+                _display.PrintScanRFID();
+            }
         }
     }
 }

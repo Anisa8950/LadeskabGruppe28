@@ -8,6 +8,7 @@ namespace LadeskabLibrary
 {
     public interface IRFReader
     {
-        void scan();
+        event EventHandler<RFDetectedEventArgs> IdDetectedEvent;
+        void scan(int id);
     }
 }
