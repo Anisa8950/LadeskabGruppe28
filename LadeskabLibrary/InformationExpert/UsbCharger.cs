@@ -19,8 +19,8 @@ namespace LadeskabLibrary
         public event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
 
         // The current current value 
-        public double CurrentValue { get; set; }
-        public bool Connected { get; set; }
+        public double CurrentValue { get; private set; }
+        public bool Connected { get; private set; }
 
         private bool _overload;
         private bool _charging;
