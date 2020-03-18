@@ -24,30 +24,51 @@ namespace LadeskabLibrary
         private IDisplay _display;
         private IDoor _door;
         private ILogFile _logFile;
-        private IRFReader _RFReader;        
-        private IUsbCharger _charger;
+        private IRFReader _RFReader;
+        private ChargeControl _chargecontrol;
+        //private IUsbCharger _charger;
 
         // Her mangler constructor
-        public StationControl(IDisplay display, IDoor door, ILogFile logFile, IRFReader RFReader, IUsbCharger charger)
+        public StationControl(IDisplay display, IDoor door, ILogFile logFile, IRFReader RFReader, ChargeControl chargecontrol)
         {
             _display = display;
             _door = door;
             _logFile = logFile;
             _RFReader = RFReader;
-            _charger = charger;
+            _chargecontrol = chargecontrol;
+
+            _door.DoorOpenEvent += HandelDoorOpenEvent;
+            _door.DoorCloseEvent += HandelDoorCloseEvent;
+            _RFReader.IdDetectedEvent += HandelIdDetectedEvent;
+        }
+
+        //Handels
+        private void HandelIdDetectedEvent(object sender, RFDetectedEventArgs e)
+        {
+            RfidDetected(e.IdDetected);
+        }
+
+        private void HandelDoorOpenEvent(object sender, DoorOpenEventArgs e)
+        {
+            DoorOpen();
+        }
+
+        private void HandelDoorCloseEvent(object sender, DoorCloseEventArgs e)
+        {
+            DoorClosed();
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        public void RfidDetected(int id)
         {
             switch (_state)
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_chargecontrol.IsConnected())
                     {
                         _door.LockDoor();
-                        _charger.StartCharging();
+                        _chargecontrol.StartCharger();
                         _oldId = id;
                         _logFile.LogDoorLocked(Convert.ToString(id));
                         _display.PrintOccupied();
@@ -68,7 +89,7 @@ namespace LadeskabLibrary
                     // Check for correct ID
                     if (id == _oldId)
                     {
-                        _charger.StopCharging();
+                        _chargecontrol.StopCharger();
                         _door.UnlockDoor();
                         _logFile.LogDoorUnlocked(Convert.ToString(id));
                         _display.PrintRemoveMobile();
@@ -84,19 +105,21 @@ namespace LadeskabLibrary
         }
 
         // Her mangler de andre trigger handlere
-        public void DoorOpen()
+        private void DoorOpen()
         {
             if(_state==LadeskabState.Available)
             {
                 _display.PrintConnectMobile();
+                _state = LadeskabState.DoorOpen;
             }
         }
 
-        public void DoorClosed()
+        private void DoorClosed()
         {
-            if (_state == LadeskabState.Available)
+            if (_state == LadeskabState.DoorOpen)
             {
                 _display.PrintScanRFID();
+                _state = LadeskabState.Available;
             }
         }
     }
