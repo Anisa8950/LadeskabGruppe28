@@ -10,7 +10,7 @@ namespace LadeskabLibrary
     {
         public void PrintChargingComplete()
         {
-            Console.WriteLine("Mobil er fuld opladt");
+            Console.WriteLine("Mobilelefon er fuld opladt");
         }
 
         public void PrintChargingError()
