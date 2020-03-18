@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface ILogFile
+    public interface ILogFile
     {
         void LogDoorLocked(string id);
         void LogDoorUnlocked(string id);

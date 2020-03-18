@@ -35,7 +35,7 @@ namespace LadeskabLibrary
 
         public void PrintOccupied()
         {
-            Console.WriteLine("Ladeskab er optaget");
+            Console.WriteLine("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.");
         }
 
         public void PrintRemoveMobile()

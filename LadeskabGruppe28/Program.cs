@@ -11,10 +11,6 @@ namespace LadeskabGruppe28
     {
         static void Main(string[] args)
         {
-            LogFile test = new LogFile();
-            test.LogDoorLocked("123");
-            test.LogDoorUnlocked("321");
-            Console.WriteLine("Thing");
         }
     }
 }

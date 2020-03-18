@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    interface IRFReader
+    public interface IRFReader
     {
         void scan();
     }
