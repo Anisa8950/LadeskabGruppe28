@@ -21,7 +21,7 @@ namespace Ladeskab.Unit.Test
             _display = Substitute.For<IDisplay>();
             _usbCharger = Substitute.For<IUsbCharger>();
 
-            cc=new ChargeControl(_display,_usbCharger);
+            cc=new ChargeControl(_usbCharger, _display);
         }
 
 
