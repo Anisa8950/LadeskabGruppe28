@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    public class DoorStateEventArgs
+    public class DoorOpenEventArgs
     {
-        public bool DoorState { set; get; }
+        public bool DoorOpen { set; get; }
+    }
+
+    public class DoorCloseEventArgs
+    {
+        public bool DoorClose { set; get; }
 
     }
 
