@@ -11,8 +11,8 @@ namespace LadeskabLibrary
         event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
        
         // The current current value 
-        double CurrentValue { get; set; }
-        bool Connected { get; set; }
+        double CurrentValue { get; }
+        bool Connected { get; }
         void StartCharging();
 
         void StopCharging();
