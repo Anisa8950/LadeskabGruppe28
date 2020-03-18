@@ -8,9 +8,16 @@ namespace LadeskabLibrary
 {
     public class RFReader : IRFReader
     {
-        public void scan()
+        public event EventHandler<RFDetectedEventArgs> IdDetectedEvent;
+        
+        public void scan(int id)
         {
-            throw new NotImplementedException();
+            OnIdDetectedEvent(new RFDetectedEventArgs { IdDetected = id });
+        }
+
+        private void OnIdDetectedEvent(RFDetectedEventArgs e)
+        {
+            IdDetectedEvent?.Invoke(this, e);
         }
     }
 }
