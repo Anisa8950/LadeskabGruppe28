@@ -13,21 +13,27 @@ namespace Ladeskab.Unit.Test
         private ChargeControl cc;
         private IDisplay _display;
         private IUsbCharger _usbCharger;
+        private CurrentLevelEventArgs _revivedEventArgs;
 
 
         [SetUp]
         public void Setup()
         {
+            // arrange
+        
             _display = Substitute.For<IDisplay>();
             _usbCharger = Substitute.For<IUsbCharger>();
-
             cc=new ChargeControl(_display,_usbCharger);
+
+            // _revivedEventArgs = null;
         }
 
 
         [Test]
         public void Test1()
         {
+            
+            
             Assert.Pass();
 
         }
