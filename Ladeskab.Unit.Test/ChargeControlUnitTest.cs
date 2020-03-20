@@ -13,7 +13,7 @@ namespace Ladeskab.Unit.Test
         private ChargeControl _cc;
         private IDisplay _display;
         private IUsbCharger _usbCharger;
-        private CurrentLevelEventArgs _revivedEventArgs;
+        
 
 
         [SetUp]
@@ -35,7 +35,7 @@ namespace Ladeskab.Unit.Test
         public void CurrentChanged_DifferentArguments_CurrentValueIsCorrect(int newCurrent)
         {
             // Act: der bliver "raised an event"
-            _usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
+            //_usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
 
             // Assert: check for at currentvalue er blevet sat til den nye værdi efter: raise event
             Assert.That(_cc.CurrentValue,Is.EqualTo(newCurrent));
