@@ -12,11 +12,13 @@ namespace Ladeskab.Unit.Test
     {
         private RFReader _uut;
         private RFDetectedEventArgs _receivedEventArgs;
+        private int NumberOfEvents;
 
         [SetUp]
         public void Setup()
         {
             _receivedEventArgs = null;
+            NumberOfEvents = 0;
 
             _uut = new RFReader();
             _uut.scan(123456);
@@ -25,6 +27,7 @@ namespace Ladeskab.Unit.Test
                 (o, args) =>
                 {
                     _receivedEventArgs = args;
+                    NumberOfEvents++;
                 };
         }
 
@@ -38,10 +41,28 @@ namespace Ladeskab.Unit.Test
         [TestCase(123456)]
         [TestCase(654321)]
         [TestCase(987654)]
-        public void ScanId_IdSetToNewValue_CorrectNewIdReceived(int id)
+        public void ScanId_IdSetToNewValue_CorrectNewIdReceived(int newId)
         {
-            _uut.scan(id);
-            Assert.That(_receivedEventArgs.IdDetected, Is.EqualTo(id));
+            _uut.scan(newId);
+            Assert.That(_receivedEventArgs.IdDetected, Is.EqualTo(newId));
+        }
+
+        [Test]
+        public void ScanId_ThreeIdScanned_ThreeEventsTriggered()
+        {
+            _uut.scan(123456);
+            _uut.scan(654321);
+            _uut.scan(987654);
+            Assert.That(NumberOfEvents, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ScanId_MultipleIdScanned_CorrectNewId()
+        {
+            _uut.scan(123456);
+            _uut.scan(654321);
+            _uut.scan(987654);
+            Assert.That(_receivedEventArgs.IdDetected, Is.EqualTo(987654));
         }
     }
 }
