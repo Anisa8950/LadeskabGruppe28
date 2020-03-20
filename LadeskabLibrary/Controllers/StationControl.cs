@@ -28,6 +28,8 @@ namespace LadeskabLibrary
         private ChargeControl _chargecontrol;
         //private IUsbCharger _charger;
 
+        public int CurrentId { get; set; }
+
         // Her mangler constructor
         public StationControl(IDisplay display, IDoor door, ILogFile logFile, IRFReader RFReader, ChargeControl chargecontrol)
         {
@@ -45,7 +47,8 @@ namespace LadeskabLibrary
         //Handels
         private void HandelIdDetectedEvent(object sender, RFDetectedEventArgs e)
         {
-            RfidDetected(e.IdDetected);
+            CurrentId = e.IdDetected;
+            RfidDetected(CurrentId);
         }
 
         private void HandelDoorOpenEvent(object sender, DoorOpenEventArgs e)

@@ -14,7 +14,7 @@ namespace LadeskabLibrary
     {
     }
 
-    public class RFDetectedEventArgs
+    public class RFDetectedEventArgs : EventArgs
     {
         public int IdDetected { get; set; }
     }

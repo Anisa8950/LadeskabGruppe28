@@ -3,6 +3,7 @@ using LadeskabLibrary;
 using NSubstitute;
 using NSubstitute.Core.Arguments;
 using NSubstitute.ReceivedExtensions;
+using System;
 
 namespace Ladeskab.Unit.Test
 {
@@ -13,7 +14,8 @@ namespace Ladeskab.Unit.Test
         private IDisplay _display;
         private IDoor _door;
         private ILogFile _logFile;
-        private IRFReader _idSource;
+        private IRFReader _idSource = new TestIdSource();
+        //private IRFReader _idsource;
         private UsbCharger _usbCharger;
 
 
@@ -31,10 +33,26 @@ namespace Ladeskab.Unit.Test
 
         }
 
-        [Test]
-        public void Test1()
+
+        [TestCase(123456)]
+        [TestCase(654321)]
+        [TestCase(987654)]
+        public void RFIDChanged_DifferentArguments_CurrentRFIDIsCorrect(int newId)
         {
-            Assert.Pass();
+            //_idSource.IdDetectedEvent += Raise.EventWith(new RFDetectedEventArgs { IdDetected = newId });
+            _idSource.scan(newId);
+            Assert.That(_uut.CurrentId, Is.EqualTo(newId));  
+        }
+
+        internal class TestIdSource : IRFReader
+        {
+            public event EventHandler<RFDetectedEventArgs> IdDetectedEvent;
+            public void scan(int id)
+            {
+                IdDetectedEvent?.Invoke
+                    (this, new RFDetectedEventArgs() { IdDetected = id });
+            }
+
         }
     }
 }
