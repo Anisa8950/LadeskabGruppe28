@@ -10,7 +10,7 @@ namespace LadeskabLibrary
     public class StationControl
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
-        public enum LadeskabState
+        private enum LadeskabState
         {
             Available,
             Locked,
@@ -19,7 +19,7 @@ namespace LadeskabLibrary
 
         // Her mangler flere member variable
         private int _oldId;
-        public LadeskabState _state;
+        private LadeskabState _state;
 
         private IDisplay _display;
         private IDoor _door;
@@ -105,7 +105,7 @@ namespace LadeskabLibrary
         }
 
         // Her mangler de andre trigger handlere
-        private void DoorOpen()
+        public void DoorOpen()
         {
             if(_state==LadeskabState.Available)
             {
@@ -114,7 +114,7 @@ namespace LadeskabLibrary
             }
         }
 
-        private void DoorClosed()
+        public void DoorClosed()
         {
             if (_state == LadeskabState.DoorOpen)
             {
