@@ -23,7 +23,8 @@ namespace Ladeskab.Unit.Test
             _display = Substitute.For<IDisplay>();
             _door = Substitute.For<IDoor>();
             _logFile = Substitute.For<ILogFile>();
-            _idSource = Substitute.For<IRFReader>();            UsbCharger _usbCharger = Substitute.For <UsbCharger>();
+            _idSource = Substitute.For<IRFReader>();            
+            _usbCharger = Substitute.For <UsbCharger>();
 
             ChargeControl _chargeControl = Substitute.For <ChargeControl>(_usbCharger, _display);
             StationControl _uut = new StationControl(_display, _door, _logFile, _idSource, _chargeControl);
