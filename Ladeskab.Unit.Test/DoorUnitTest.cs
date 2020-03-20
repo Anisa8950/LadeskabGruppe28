@@ -15,10 +15,7 @@ namespace Ladeskab.Unit.Test
         private IRFReader _idSource;
         private UsbCharger _usbCharger;
         private ChargeControl _chargeControl;
-
         private StationControl _stationControl;
-        private DoorOpenEventArgs _receivedOpenEventArgs;
-        private DoorCloseEventArgs _receivedCloseEventArgs;
 
 
         [SetUp]
@@ -37,14 +34,14 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void SetDoorStateOpen_HandelDoorOpenEventCalled_EventFired()
         {
-            _uut.SetDoorStateOpen();
+            _uut.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
             _stationControl.Received().DoorOpen();
         }
 
         [Test]
         public void SetDoorStateClose_HandelDoorCloseEvent_EventFired()
         {
-            _uut.SetDoorStateClose();
+            _uut.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
             _stationControl.Received().DoorClosed();
         }
     }
