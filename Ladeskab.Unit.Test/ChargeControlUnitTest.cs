@@ -13,7 +13,7 @@ namespace Ladeskab.Unit.Test
         private ChargeControl _cc;
         private IDisplay _display;
         private IUsbCharger _usbCharger;
-        private CurrentLevelEventArgs _revivedEventArgs;
+        
 
 
         [SetUp]
