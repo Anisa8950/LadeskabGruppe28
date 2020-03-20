@@ -43,6 +43,21 @@ namespace Ladeskab.Unit.Test
             Assert.That(_uut.CurrentId, Is.EqualTo(newId));  
         }
 
+        [Test]
+        public void RFIdDetectedCalled_MobileConnectedAndStateAvaliable_DoorLockedChargerStart()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
+            _uut.RfidDetected(123456);
+
+            _door.Received(1).LockDoor();
+            _chargeControl.Received(1).StartCharger();
+            _logFile.Received(1).LogDoorLocked("123456");
+            _display.Received(1).PrintOccupied();
+        }
+
+        [Test]
+        public void 
+
         
     }
 }

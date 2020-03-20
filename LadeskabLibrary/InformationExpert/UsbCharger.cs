@@ -16,7 +16,7 @@ namespace LadeskabLibrary
         private const int ChargeTimeMinutes = 20; // minutes
         private const int CurrentTickInterval = 250; // ms
 
-        public event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
+        public virtual event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
 
         // The current current value 
         public double CurrentValue { get; private set; }
