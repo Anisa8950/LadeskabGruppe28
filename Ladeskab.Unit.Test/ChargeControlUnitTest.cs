@@ -44,12 +44,14 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void Test2()
+        public void StartChargerCalled_xx_PrintChargingMobileAndStartChargingIsCalled()
         {
+            // husk undersøg hvordan currentvalue kan sættes til noget forskelligt i én test
+            _cc.CurrentValue = 50;
+            _cc.StartCharger();
 
-            // test event source IUsb
-
-            Assert.Pass();
+            _usbCharger.Received(1).StartCharging();
+            _display.Received(1).PrintChargingMobile();
 
         }
 
