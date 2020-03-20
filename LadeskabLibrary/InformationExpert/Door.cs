@@ -8,9 +8,9 @@ namespace LadeskabLibrary
 {
     public class Door: IDoor
     {
-        public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
+        public virtual event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
 
-        public event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
+        public virtual event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
 
         public void LockDoor()
         {

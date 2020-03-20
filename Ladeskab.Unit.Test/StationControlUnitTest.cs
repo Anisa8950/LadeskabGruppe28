@@ -88,8 +88,20 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void 
+        public void RFIdDetectedCalled_MobileConnectedAndStateLocked_DoorUnlockedChargerStop()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
+            _uut.RfidDetected(123456);
 
-        
+            _uut.RfidDetected(123456);
+            _door.Received(1).UnlockDoor();
+            _chargeControl.Received(1).StopCharger();
+            _logFile.Received(1).LogDoorUnlocked("123456");
+            _display.Received(1).PrintRemoveMobile();
+
+        }
+
+
+
     }
 }
