@@ -11,11 +11,11 @@ namespace Ladeskab.Unit.Test
     public class StationControlUnitTest
     {
         private StationControl _uut;
+        private ChargeControl _chargeControl;
         private IDisplay _display;
         private IDoor _door;
         private ILogFile _logFile;
-        private IRFReader _idSource = new TestIdSource();
-        //private IRFReader _idsource;
+        private IRFReader _idSource;
         private UsbCharger _usbCharger;
 
 
@@ -28,9 +28,8 @@ namespace Ladeskab.Unit.Test
             _idSource = Substitute.For<IRFReader>();            
             _usbCharger = Substitute.For <UsbCharger>();
 
-            ChargeControl _chargeControl = Substitute.For <ChargeControl>(_usbCharger, _display);
-            StationControl _uut = new StationControl(_display, _door, _logFile, _idSource, _chargeControl);
-
+            _chargeControl = Substitute.For <ChargeControl>(_usbCharger, _display);
+            _uut = new StationControl(_display, _door, _logFile, _idSource, _chargeControl); 
         }
 
 
@@ -39,20 +38,11 @@ namespace Ladeskab.Unit.Test
         [TestCase(987654)]
         public void RFIDChanged_DifferentArguments_CurrentRFIDIsCorrect(int newId)
         {
-            //_idSource.IdDetectedEvent += Raise.EventWith(new RFDetectedEventArgs { IdDetected = newId });
-            _idSource.scan(newId);
+            _idSource.IdDetectedEvent += Raise.EventWith<RFDetectedEventArgs>(this, new RFDetectedEventArgs() { IdDetected = newId });
+            //_idSource.scan(newId);
             Assert.That(_uut.CurrentId, Is.EqualTo(newId));  
         }
 
-        internal class TestIdSource : IRFReader
-        {
-            public event EventHandler<RFDetectedEventArgs> IdDetectedEvent;
-            public void scan(int id)
-            {
-                IdDetectedEvent?.Invoke
-                    (this, new RFDetectedEventArgs() { IdDetected = id });
-            }
-
-        }
+        
     }
 }

@@ -15,7 +15,7 @@ namespace LadeskabLibrary
             OnIdDetectedEvent(new RFDetectedEventArgs { IdDetected = id });
         }
 
-        private void OnIdDetectedEvent(RFDetectedEventArgs e)
+        protected virtual void OnIdDetectedEvent(RFDetectedEventArgs e)
         {
             IdDetectedEvent?.Invoke(this, e);
         }
