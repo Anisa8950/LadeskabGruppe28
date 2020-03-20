@@ -21,16 +21,17 @@ namespace LadeskabGruppe28
             ChargeControl _chargeControl = new ChargeControl(_usbCharger, _display);
             StationControl _stationControl = new StationControl(_display, _door, _logFile, _RFReader, _chargeControl);
             
+
             bool finish = false;
+
+            System.Console.WriteLine("Q: Quit ");
+            System.Console.WriteLine("1: Open døren");
+            System.Console.WriteLine("2: Tilslut telefonen");
+            System.Console.WriteLine("3: Luk døren");
+            System.Console.WriteLine("4: Indlæs RFID");
             do
-            {
-                System.Console.WriteLine("Q: Quit ");
-                System.Console.WriteLine("1: Open døren");
-                System.Console.WriteLine("2: Tilslut telefonen");
-                System.Console.WriteLine("3: Luk døren");
-                System.Console.WriteLine("4: Indlæs RFID");
-                string input;                
-                input = Console.ReadLine();
+            {                
+                string input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
                 switch (input[0])
@@ -42,21 +43,22 @@ namespace LadeskabGruppe28
 
                     case '1':
                         _door.SetDoorStateOpen();
-                        //door.OnDoorOpen();
                         break;
 
                     case '2':
-                        //door.OnDoorClose();
+                        _chargeControl.CurrentValue = 1;
                         break;
 
                     case '3':
+                        _door.SetDoorStateClose();
+                        break;
+
+                    case '4':
                         System.Console.WriteLine("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
 
-                        int id = Convert.ToInt32(idString);
-                        //rfidReader.OnRfidRead(id);
+                        _stationControl.RfidDetected(Convert.ToInt32(idString));                        
                         break;
-                    case '4':
 
                     default:
                         break;
