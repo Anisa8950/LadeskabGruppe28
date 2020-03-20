@@ -42,6 +42,8 @@ namespace LadeskabLibrary
             _door.DoorOpenEvent += HandelDoorOpenEvent;
             _door.DoorCloseEvent += HandelDoorCloseEvent;
             _RFReader.IdDetectedEvent += HandelIdDetectedEvent;
+
+            _state = LadeskabState.Available;
         }
 
         //Handels

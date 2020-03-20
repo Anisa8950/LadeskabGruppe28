@@ -38,11 +38,42 @@ namespace Ladeskab.Unit.Test
         [TestCase(987654)]
         public void RFIDChanged_DifferentArguments_CurrentRFIDIsCorrect(int newId)
         {
-            _idSource.IdDetectedEvent += Raise.EventWith<RFDetectedEventArgs>(this, new RFDetectedEventArgs() { IdDetected = newId });
-            //_idSource.scan(newId);
+            _idSource.IdDetectedEvent += Raise.EventWith<RFDetectedEventArgs>(this, new RFDetectedEventArgs() { IdDetected = newId });            
             Assert.That(_uut.CurrentId, Is.EqualTo(newId));  
         }
 
-        
+
+        [Test]
+        public void DoorOpen_DoorstateAvailable_DisplayCalled()
+        {
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _display.Received().PrintConnectMobile();
+        }
+
+
+        [Test]
+        public void DoorOpen_DoorstateDoorOpen_DisplayCalledOnce()
+        {
+            //Arrange
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _display.Received(1).PrintConnectMobile();
+        }
+
+        [Test]
+        public void DoorOpen_DoorstateLocked_DisplayCalledOnce()
+        {
+            //Arrange
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _chargeControl.CurrentValue = 1;
+            _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
+            _idSource.IdDetectedEvent += Raise.EventWith<RFDetectedEventArgs>(this, new RFDetectedEventArgs() { IdDetected = 123 });
+
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _display.Received(1).PrintConnectMobile();
+        }
+
+
     }
 }

@@ -11,7 +11,6 @@ namespace Ladeskab.Unit.Test
     {
         private Door _uut;
         private IDisplay _display;
-        private IDoor _door;
         private ILogFile _logFile;
         private IRFReader _idSource;
         private UsbCharger _usbCharger;
@@ -29,14 +28,10 @@ namespace Ladeskab.Unit.Test
             _logFile = Substitute.For<ILogFile>();
             _idSource = Substitute.For<IRFReader>();
             _usbCharger = Substitute.For<UsbCharger>();
-
             _uut = new Door();
 
             _chargeControl = Substitute.For<ChargeControl>(_usbCharger, _display);
             _stationControl = Substitute.For<StationControl>(_display, _uut, _logFile, _idSource, _chargeControl);
-
-            _uut.DoorOpenEvent += (o, args) => {_receivedOpenEventArgs = args;};
-            _uut.DoorCloseEvent += (o, args) => { _receivedCloseEventArgs = args; };
         }
 
         [Test]
