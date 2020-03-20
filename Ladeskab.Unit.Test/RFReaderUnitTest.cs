@@ -35,11 +35,13 @@ namespace Ladeskab.Unit.Test
             Assert.That(_receivedEventArgs, Is.Not.Null);
         }
 
-        [Test]
-        public void ScanId_IdSetToNewValue_CorrectNewIdReceived()
+        [TestCase(123456)]
+        [TestCase(654321)]
+        [TestCase(987654)]
+        public void ScanId_IdSetToNewValue_CorrectNewIdReceived(int id)
         {
-            _uut.scan(654321);
-            Assert.That(_receivedEventArgs.IdDetected, Is.EqualTo(654321));
+            _uut.scan(id);
+            Assert.That(_receivedEventArgs.IdDetected, Is.EqualTo(id));
         }
     }
 }
