@@ -19,7 +19,7 @@ namespace LadeskabLibrary
         public virtual event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
 
         // The current current value 
-        public double CurrentValue { get; private set; }
+        public virtual double CurrentValue { get; private set; }
         //public bool Connected { get; private set; }
         public bool Connected { get; set; }
 
