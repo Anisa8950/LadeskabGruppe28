@@ -8,8 +8,7 @@ namespace LadeskabLibrary
 {
     public class Door: IDoor
     {
-        public bool DoorNowOpend { get; set; }
-        public bool DoorNowClosed { get; set; }
+        public bool DoorState { get; set; }
 
         public event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
 
@@ -25,10 +24,11 @@ namespace LadeskabLibrary
            Console.WriteLine("Døren er ulåst"); 
         }
 
-        public void SetDoorStateOpen(bool newDoorState)
+        public void SetDoorStateOpen()
         {
-            OnDoorStateOpen(new DoorOpenEventArgs { DoorOpen = newDoorState });
-            DoorNowOpend = newDoorState;
+            bool openDoor = true;
+            OnDoorStateOpen(new DoorOpenEventArgs { DoorOpen = openDoor });
+            DoorState = openDoor;
         }
         
         private void OnDoorStateOpen(DoorOpenEventArgs e)
@@ -38,10 +38,11 @@ namespace LadeskabLibrary
 
 
 
-        public void SetDoorStateClose(bool newDoorState)
+        public void SetDoorStateClose()
         {
-            OnDoorStateClose(new DoorCloseEventArgs { DoorClose = newDoorState });
-            DoorNowClosed = newDoorState;
+            bool closeDoor = false;
+            OnDoorStateClose(new DoorCloseEventArgs { DoorClose = closeDoor });
+            DoorState = closeDoor;
         }
 
         private void OnDoorStateClose(DoorCloseEventArgs e)
