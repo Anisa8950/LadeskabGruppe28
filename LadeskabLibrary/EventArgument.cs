@@ -8,13 +8,10 @@ namespace LadeskabLibrary
 {
     public class DoorOpenEventArgs
     {
-        public bool DoorOpen { set; get; }
     }
 
     public class DoorCloseEventArgs
     {
-        public bool DoorClose { set; get; }
-
     }
 
     public class RFDetectedEventArgs

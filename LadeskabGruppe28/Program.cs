@@ -56,8 +56,7 @@ namespace LadeskabGruppe28
                     case '4':
                         System.Console.WriteLine("Indtast RFID id: ");
                         string idString = System.Console.ReadLine();
-
-                        _stationControl.RfidDetected(Convert.ToInt32(idString));                        
+                        _RFReader.scan(Convert.ToInt32(idString));                       
                         break;
 
                     default:
