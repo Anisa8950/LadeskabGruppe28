@@ -10,7 +10,7 @@ namespace Ladeskab.Unit.Test
    [TestFixture]
     public class ChargeControlUnitTest
     {
-        private ChargeControl _cc;
+        private ChargeControl _uut;
         private IDisplay _display;
         private IUsbCharger _usbCharger;
         
@@ -23,7 +23,7 @@ namespace Ladeskab.Unit.Test
         
             _display = Substitute.For<IDisplay>();
             _usbCharger = Substitute.For<IUsbCharger>();
-            _cc=new ChargeControl(_usbCharger, _display);
+            _uut=new ChargeControl(_usbCharger, _display);
         }
 
 
@@ -38,7 +38,7 @@ namespace Ladeskab.Unit.Test
             //_usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
 
             // Assert: check for at currentvalue er blevet sat til den nye værdi efter: raise event
-            Assert.That(_cc.CurrentValue,Is.EqualTo(newCurrent));
+            Assert.That(_uut.CurrentValue,Is.EqualTo(newCurrent));
 
            
         }
@@ -47,8 +47,8 @@ namespace Ladeskab.Unit.Test
         public void StartChargerCalled_xx_PrintChargingMobileAndStartChargingIsCalled()
         {
             // husk undersøg hvordan currentvalue kan sættes til noget forskelligt i én test
-            _cc.CurrentValue = 50;
-            _cc.StartCharger();
+            _uut.CurrentValue = 50;
+            _uut.StartCharger();
 
             _usbCharger.Received(1).StartCharging();
             _display.Received(1).PrintChargingMobile();
