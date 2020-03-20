@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LadeskabLibrary
 {
-    public class DoorOpenEventArgs
+    public class DoorOpenEventArgs : EventArgs
     {
     }
 
-    public class DoorCloseEventArgs
+    public class DoorCloseEventArgs : EventArgs
     {
     }
 
@@ -19,7 +19,7 @@ namespace LadeskabLibrary
         public int IdDetected { get; set; }
     }
 
-    public class CurrentLevelEventArgs
+    public class CurrentLevelEventArgs : EventArgs
     {
        // Value in mA (milliAmpere)
         public double Current { get; set; }
