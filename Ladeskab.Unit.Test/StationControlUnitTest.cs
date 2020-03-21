@@ -103,6 +103,21 @@ namespace Ladeskab.Unit.Test
             _display.DidNotReceive().PrintOccupied();
         }
 
+        [Test]
+        public void RFIdDetectedCalled_CorrectIDAndStateLocked_DoorUnlockedChargerStop()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 3 });
+            _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
+            _uut.RfidDetected(123456);
+
+            _door.Received(1).UnlockDoor();
+            _chargeControl.Received(1).StopCharger();
+            _logFile.Received(1).LogDoorUnlocked("123456");
+            _display.Received(1).PrintRemoveMobile();
+
+            _display.DidNotReceive().PrintRFIDError();
+        }
+
         
 
 
