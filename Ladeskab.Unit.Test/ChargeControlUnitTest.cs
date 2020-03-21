@@ -67,6 +67,16 @@ namespace Ladeskab.Unit.Test
 
         }
 
+        [Test]
+        public void StopCharger_CurrentBelow5Ampere_ChargerIsStoppendAndDisplayPrints()
+        {
+            _uut.CurrentValue = 2.5;
+            _uut.StopCharger();
+            _usbCharger.Received(1).StopCharging();
+            _display.Received(1).PrintChargingComplete();
+
+        }
+
 
     }
 }
