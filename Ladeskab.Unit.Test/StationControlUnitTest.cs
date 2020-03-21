@@ -87,9 +87,7 @@ namespace Ladeskab.Unit.Test
             _display.Received(1).PrintOccupied();
         }
 
-        [Test]
-        public void 
-
+     
         
     }
 }

@@ -11,13 +11,41 @@ namespace Ladeskab.Unit.Test
     {
 
         private UsbCharger _uut;
-        
+        private CurrentLevelEventArgs _receivedEventArgs;
+
 
         [SetUp]
         public void Setup()
         {
 
+            _receivedEventArgs = null;
             _uut = new UsbCharger();
+
+            _uut.CurrentLevelEvent +=
+                (o, args) => { _receivedEventArgs = args; };
+        }
+
+        [Test]
+        public void setCurrent_CurrentSetToNewValue_EventFired()
+        {
+            _uut.CurrentValue = 300;
+            Assert.That(_receivedEventArgs, Is.Not.Null);
+        }
+
+        [TestCase(200)]
+        [TestCase(150)]
+        [TestCase(100)]
+        public void SetCurrent_CurrentSetToNewValue_CorrectNewCurrentReceived(double newCurrent)
+        {
+            _uut.CurrentValue = 200;
+            Assert.That(_receivedEventArgs.Current, Is.EqualTo(newCurrent));
+        }
+
+        [Test]
+        public void StopCharging_ChargingIsStopped_NewCurrentIsZero()
+        {
+            _uut.StartCharging();
+            Assert.That(_uut.CurrentValue, Is.EqualTo(0));
         }
 
         [Test]
