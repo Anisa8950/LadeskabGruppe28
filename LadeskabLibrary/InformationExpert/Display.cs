@@ -8,49 +8,60 @@ namespace LadeskabLibrary
 {
     public class Display : IDisplay
     {
+        public string ConsoleString { get; set; }
+
         public void PrintChargingComplete()
         {
-            Console.WriteLine("Mobilelefon er fuld opladt");
+            ConsoleString = "Mobilelefon er fuld opladt";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintChargingError()
         {
-            Console.WriteLine("Fejl. Evt. kortslutning. Frakobel usb lader.");
+            ConsoleString = "Fejl. Evt. kortslutning. Frakobel usb lader.";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintChargingMobile()
         {
-            Console.WriteLine("Oplader mobil");
+            ConsoleString = "Oplader mobil";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintConnectingError()
         {
-            Console.WriteLine("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt");
+            ConsoleString = "Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintConnectMobile()
         {
-            Console.WriteLine("Tilslut mobiltelefon");
+            ConsoleString = "Tilslut mobiltelefon";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintOccupied()
         {
-            Console.WriteLine("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.");
+            ConsoleString = "Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintRemoveMobile()
         {
-            Console.WriteLine("Fjern mobiltelefon fra skab og luk døren");
+            ConsoleString = "Fjern mobiltelefon fra skab og luk døren";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintRFIDError()
         {
-            Console.WriteLine("Forkert RFID tag");
+            ConsoleString = "Forkert RFID tag";
+            Console.WriteLine(ConsoleString);
         }
 
         public void PrintScanRFID()
         {
-            Console.WriteLine("Indlæs RFID");
+            ConsoleString = "Indlæs RFID";
+            Console.WriteLine(ConsoleString);
         }
     }
 }
