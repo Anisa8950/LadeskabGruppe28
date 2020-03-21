@@ -19,10 +19,68 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void Test1()
+        public void PrintChargingComplete_CorrectString()
         {
+            _uut.PrintChargingComplete();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Mobilelefon er fuld opladt"));
             
         }
 
+        [Test]
+        public void PrintChargingError_CorrectString()
+        {
+            _uut.PrintChargingError();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Fejl. Evt. kortslutning. Frakobel usb lader."));
+        }
+
+        [Test]
+        public void PrintChargingMobile_CorrectString()
+        {
+            _uut.PrintChargingMobile();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Oplader mobil"));
+        }
+
+        [Test]
+        public void PrintConnectingError_CorrectString()
+        {
+            _uut.PrintConnectingError();
+            Assert.That(_uut.ConsoleString,
+                Is.EqualTo("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt"));
+        }
+
+        [Test]
+        public void PrintConnectMobile_CorrectString()
+        {
+            _uut.PrintConnectMobile();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Tilslut mobiltelefon"));
+        }
+
+        [Test]
+        public void PrintOccupied_CorrectString()
+        {
+            _uut.PrintOccupied();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op."));
+        }
+
+        [Test]
+        public void PrintRemoveMobile_CorrectString()
+        {
+            _uut.PrintRemoveMobile();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Fjern mobiltelefon fra skab og luk døren"));
+        }
+
+        [Test]
+        public void PrintRFIDError_CorrectString()
+        {
+            _uut.PrintRFIDError();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Forkert RFID tag"));
+        }
+
+        [Test]
+        public void PrintScanRFID_CorrectString()
+        {
+            _uut.PrintScanRFID();
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Indlæs RFID"));
+        }
     }
 }
