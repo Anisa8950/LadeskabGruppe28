@@ -26,6 +26,18 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
+        public void ctor_IsConnected()
+        {
+            Assert.That(_uut.Connected, Is.True);
+        }
+
+        [Test]
+        public void ctor_CurentValueIsZero()
+        {
+            Assert.That(_uut.CurrentValue, Is.Zero);
+        }
+
+        [Test]
         public void setCurrent_CurrentSetToNewValue_EventFired()
         {
             _uut.CurrentValue = 300;
@@ -79,6 +91,18 @@ namespace Ladeskab.Unit.Test
         }
 
 
+        [Test] // kopiret fra Frank
+        public void Started_WaitSomeTime_ReceivedSeveralValues()
+        {
+            int numValues = 0;
+            _uut.CurrentLevelEvent += (o, args) => numValues++;
+
+            _uut.StartCharging();
+
+            System.Threading.Thread.Sleep(1100);
+
+            Assert.That(numValues, Is.GreaterThan(4));
+        }
 
 
 
