@@ -44,7 +44,7 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void StartChargerCalled_xx_PrintChargingMobileAndStartChargingIsCalled()
+        public void StartChargerCalled_CurrentBelow500AndOver5_PrintChargingMobileAndStartChargingIsCalled()
         {
             //Flere testcases med currentvalue der får forskellige værdier
            
