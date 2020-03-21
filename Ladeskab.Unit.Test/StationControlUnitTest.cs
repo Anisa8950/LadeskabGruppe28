@@ -121,6 +121,8 @@ namespace Ladeskab.Unit.Test
             _chargeControl.Received(1).StartCharger();
             _logFile.Received(1).LogDoorLocked("123456");
             _display.Received(1).PrintOccupied();
+
+            _display.DidNotReceive().PrintConnectingError();
         }
 
         [Test]
@@ -137,6 +139,21 @@ namespace Ladeskab.Unit.Test
 
             _display.DidNotReceive().PrintRFIDError();
         }
+
+        public void RFIdDetectedCalled_MobileNotConnectedAndStateAvaliable_ConnectingError()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 0 });
+            _uut.RfidDetected(123456);
+
+            _display.Received(1).PrintConnectingError();
+
+            _door.DidNotReceive().LockDoor();
+            _chargeControl.DidNotReceive().StartCharger();
+            _logFile.DidNotReceive().LogDoorLocked("123456");
+            _display.DidNotReceive().PrintOccupied();
+        }
+
+        
 
 
 

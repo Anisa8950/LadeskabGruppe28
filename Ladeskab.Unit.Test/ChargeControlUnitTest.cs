@@ -35,7 +35,7 @@ namespace Ladeskab.Unit.Test
         public void CurrentChanged_DifferentArguments_CurrentValueIsCorrect(int newCurrent)
         {
             // Act: der bliver "raised an event"
-            //_usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
+            _usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
 
             // Assert: check for at currentvalue er blevet sat til den nye værdi efter: raise event
             Assert.That(_uut.CurrentValue,Is.EqualTo(newCurrent));
@@ -44,9 +44,10 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void StartChargerCalled_xx_PrintChargingMobileAndStartChargingIsCalled()
+        public void StartChargerCalled_CurrentBelow500AndOver5_PrintChargingMobileAndStartChargingIsCalled()
         {
-            // husk undersøg hvordan currentvalue kan sættes til noget forskelligt i én test
+            //Flere testcases med currentvalue der får forskellige værdier
+           
             _uut.CurrentValue = 50;
             _uut.StartCharger();
 
@@ -56,14 +57,47 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void Test3()
+        public void IsConnected_CurrentBelowZero_ReturnsFalse() // i tvivl om er rigtig
         {
+            _uut.CurrentValue = -3;
+            _uut.IsConnected();
 
-            // test når startCharger kaldes med følgende forudsætninger: _charger er false, current er sat til fx 10
-            // forventer at der bliver kaldt på startCharging som sætter currentvalue til 500 samt _charging til true 
-            // - derudover tjekke at  _display.PrintChargingMobile(); bliver kaldt?
+            Assert.That(_uut.IsConnected,Is.EqualTo(false));
 
-            Assert.Pass();
+        }
+
+      
+
+
+        [Test]
+        public void IsConnected_CurrentIsZero_ReturnsFalse() // i tvivl om er rigtig
+        {
+            _uut.CurrentValue = 0;
+            _uut.IsConnected();
+
+            Assert.That(_uut.IsConnected, Is.EqualTo(false));
+
+        }
+
+        [Test]
+        public void IsConnected_CurrentOverZero_ReturnsTrue() // i tvivl om er rigtig
+        {
+            _uut.CurrentValue = 5;
+            _uut.IsConnected();
+
+            Assert.That(_uut.IsConnected, Is.EqualTo(true));
+
+        }
+
+
+
+        [Test]
+        public void StopCharger_CurrentBelow5Ampere_ChargerIsStoppendAndDisplayPrints()
+        {
+            _uut.CurrentValue = 2.5;
+            _uut.StopCharger();
+            _usbCharger.Received(1).StopCharging();
+            _display.Received(1).PrintChargingComplete();
 
         }
 
