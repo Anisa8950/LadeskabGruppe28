@@ -26,9 +26,9 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void setCurrent_CurrentSetToNewValue_EventFired()
+        public void StartCharging_ChargerStarted_EventFired()
         {
-            _uut.CurrentValue = 300;
+            _uut.StartCharging();
             Assert.That(_receivedEventArgs, Is.Not.Null);
         }
 
