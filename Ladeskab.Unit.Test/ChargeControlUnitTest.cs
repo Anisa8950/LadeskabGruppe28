@@ -35,7 +35,7 @@ namespace Ladeskab.Unit.Test
         public void CurrentChanged_DifferentArguments_CurrentValueIsCorrect(int newCurrent)
         {
             // Act: der bliver "raised an event"
-            //_usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
+            _usbCharger.CurrentLevelEvent += Raise.EventWith(new CurrentLevelEventArgs {Current = newCurrent});
 
             // Assert: check for at currentvalue er blevet sat til den nye værdi efter: raise event
             Assert.That(_uut.CurrentValue,Is.EqualTo(newCurrent));
