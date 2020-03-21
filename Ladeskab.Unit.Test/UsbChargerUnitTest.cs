@@ -17,34 +17,44 @@ namespace Ladeskab.Unit.Test
         [SetUp]
         public void Setup()
         {
-
-            _receivedEventArgs = null;
             _uut = new UsbCharger();
-
-            _uut.CurrentLevelEvent +=
-                (o, args) => { _receivedEventArgs = args; };
         }
 
         [Test]
-        public void StartCharging_ChargerStarted_EventFired()
+        public void ctor_IsConnected()
         {
+            Assert.That(_uut.Connected, Is.True);
+        }
+
+        [Test]
+        public void ctor_CurentValueIsZero()
+        {
+            Assert.That(_uut.CurrentValue, Is.Zero);
+        }
+
+        [Test]
+        public void setCurrent_CurrentSetToNewValue_EventFired()
+        {
+            _receivedEventArgs = null;
+            _uut.CurrentLevelEvent +=
+                (o, args) => { _receivedEventArgs = args; };
+
+
             _uut.StartCharging();
             Assert.That(_receivedEventArgs, Is.Not.Null);
         }
 
-        [TestCase(200)]
-        [TestCase(150)]
-        [TestCase(100)]
-        public void SetCurrent_CurrentSetToNewValue_CorrectNewCurrentReceived(double newCurrent)
+        [Test]
+        public void StartCharging_CurrentSetto500Ampere_CorrectNewCurrentReceived()
         {
-            _uut.CurrentValue = 200;
-            Assert.That(_receivedEventArgs.Current, Is.EqualTo(newCurrent));
+            _uut.StopCharging();
+            Assert.That(_receivedEventArgs.Current, Is.EqualTo(500));
         }
 
         [Test]
         public void StopCharging_ChargingIsStopped_NewCurrentIsZero()
         {
-            _uut.StartCharging();
+            _uut.StopCharging();
             Assert.That(_uut.CurrentValue, Is.EqualTo(0));
         }
 
@@ -79,6 +89,18 @@ namespace Ladeskab.Unit.Test
         }
 
 
+        [Test] // kopiret fra Frank
+        public void Started_WaitSomeTime_ReceivedSeveralValues()
+        {
+            int numValues = 0;
+            _uut.CurrentLevelEvent += (o, args) => numValues++;
+
+            _uut.StartCharging();
+
+            System.Threading.Thread.Sleep(1100);
+
+            Assert.That(numValues, Is.GreaterThan(4));
+        }
 
 
 
