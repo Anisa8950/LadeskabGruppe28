@@ -126,20 +126,6 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void RFIdDetectedCalled_MobileConnectedAndStateLocked_DoorUnlockedChargerStop_sameID()
-        {
-            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
-            _uut.RfidDetected(123456);
-
-            _uut.RfidDetected(123456);
-            _door.Received(1).UnlockDoor();
-            _chargeControl.Received(1).StopCharger();
-            _logFile.Received(1).LogDoorUnlocked("123456");
-            _display.Received(1).PrintRemoveMobile();
-
-            _display.DidNotReceive().PrintRFIDError();
-        }
-
         public void RFIdDetectedCalled_MobileNotConnectedAndStateAvaliable_ConnectingError()
         {
             _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 0 });
@@ -154,18 +140,45 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void RFIdDetectedCalled_CorrectIDAndStateLocked_DoorUnlockedChargerStop()
+        public void RFIdDetectedCalled_MobileConnectedAndStateLocked_DoorUnlockedChargerStop_sameID()
         {
-            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 3 });
-            _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
             _uut.RfidDetected(123456);
 
+            _uut.RfidDetected(123456);
             _door.Received(1).UnlockDoor();
             _chargeControl.Received(1).StopCharger();
             _logFile.Received(1).LogDoorUnlocked("123456");
             _display.Received(1).PrintRemoveMobile();
 
             _display.DidNotReceive().PrintRFIDError();
+        }
+
+        [Test]
+        public void RFIdDetectedCalled_MobileConnectedAndStateLocked_NotSameIdPrintRFIDError()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
+            _uut.RfidDetected(123456);
+
+            _uut.RfidDetected(654321);
+            _display.Received(1).PrintRFIDError();
+
+            _door.DidNotReceive().UnlockDoor();
+            _chargeControl.DidNotReceive().StopCharger();
+            _logFile.DidNotReceive().LogDoorUnlocked("654321");
+            _display.DidNotReceive().PrintRemoveMobile();
+        }
+
+        [Test]
+        public void RFIdDetectedCalled_StateOpen_NoMethodCallsReceived()
+        {
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _uut.RfidDetected(123456);
+
+            _door.DidNotReceive().ReceivedCalls();
+            _chargeControl.DidNotReceive().ReceivedCalls();
+            _logFile.DidNotReceive().ReceivedCalls();
+            _display.DidNotReceive().ReceivedCalls();
         }
 
         
