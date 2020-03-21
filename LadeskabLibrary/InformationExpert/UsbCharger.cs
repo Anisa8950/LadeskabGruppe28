@@ -19,7 +19,7 @@ namespace LadeskabLibrary
         public virtual event EventHandler<CurrentLevelEventArgs> CurrentLevelEvent;
 
         // The current current value 
-        public virtual double CurrentValue { get; set; } // må vi gerne lave public setter, når Frank ikke havde nogle?
+        public virtual double CurrentValue { get; private set;} 
         //public bool Connected { get; private set; }
         public bool Connected { get; set; }
 
@@ -116,6 +116,7 @@ namespace LadeskabLibrary
         private void OnNewCurrent()
         {
             CurrentLevelEvent?.Invoke(this, new CurrentLevelEventArgs() {Current = this.CurrentValue});
+            
         }
     }
 }
