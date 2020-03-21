@@ -126,6 +126,20 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
+        public void RFIdDetectedCalled_MobileNotConnectedAndStateAvaliable_ConnectingError()
+        {
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 0 });
+            _uut.RfidDetected(123456);
+
+            _display.Received(1).PrintConnectingError();
+
+            _door.DidNotReceive().LockDoor();
+            _chargeControl.DidNotReceive().StartCharger();
+            _logFile.DidNotReceive().LogDoorLocked("123456");
+            _display.DidNotReceive().PrintOccupied();
+        }
+
+        [Test]
         public void RFIdDetectedCalled_MobileConnectedAndStateLocked_DoorUnlockedChargerStop_sameID()
         {
             _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
@@ -140,17 +154,31 @@ namespace Ladeskab.Unit.Test
             _display.DidNotReceive().PrintRFIDError();
         }
 
-        public void RFIdDetectedCalled_MobileNotConnectedAndStateAvaliable_ConnectingError()
+        [Test]
+        public void RFIdDetectedCalled_MobileConnectedAndStateLocked_NotSameIdPrintRFIDError()
         {
-            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 0 });
+            _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
             _uut.RfidDetected(123456);
 
-            _display.Received(1).PrintConnectingError();
+            _uut.RfidDetected(654321);
+            _display.Received(1).PrintRFIDError();
 
-            _door.DidNotReceive().LockDoor();
-            _chargeControl.DidNotReceive().StartCharger();
-            _logFile.DidNotReceive().LogDoorLocked("123456");
-            _display.DidNotReceive().PrintOccupied();
+            _door.DidNotReceive().UnlockDoor();
+            _chargeControl.DidNotReceive().StopCharger();
+            _logFile.DidNotReceive().LogDoorUnlocked("654321");
+            _display.DidNotReceive().PrintRemoveMobile();
+        }
+
+        [Test]
+        public void RFIdDetectedCalled_StateOpen_NoMethodCallsReceived()
+        {
+            _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
+            _uut.RfidDetected(123456);
+
+            _door.DidNotReceive().ReceivedCalls();
+            _chargeControl.DidNotReceive().ReceivedCalls();
+            _logFile.DidNotReceive().ReceivedCalls();
+            _display.DidNotReceive().ReceivedCalls();
         }
 
         
