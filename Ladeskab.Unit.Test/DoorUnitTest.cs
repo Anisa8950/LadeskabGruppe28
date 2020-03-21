@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using LadeskabLibrary;
 using NSubstitute;
 using NSubstitute.Core.Arguments;
@@ -44,5 +45,22 @@ namespace Ladeskab.Unit.Test
             _uut.SetDoorStateClose();
             _stationControl.Received().DoorClosed();
         }
+
+        [Test]
+        public void UnlockedDoorCalled_Write()
+        {
+            _uut.UnlockDoor();
+
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Døren er ulåst"));
+        }
+
+        [Test]
+        public void lockedDoorCalled_Write()
+        {
+            _uut.LockDoor();
+
+            Assert.That(_uut.ConsoleString, Is.EqualTo("Døren er låst"));
+        }
+
     }
 }
