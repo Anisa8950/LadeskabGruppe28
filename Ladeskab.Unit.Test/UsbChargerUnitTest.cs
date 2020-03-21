@@ -58,7 +58,7 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void StartingChargerCaller_IsConnectedAndOverload_CurrentValueEqualsOverloadCurrent()
+        public void StartingChargerCaller_IsConnectedAndOverload_CurrentValueIsOverloadCurrent()
         {
             _uut.SimulateOverload(false);
             _uut.StartCharging();
@@ -68,7 +68,7 @@ namespace Ladeskab.Unit.Test
         }
 
         [Test]
-        public void StartingChargerCaller_IsNotConnected_CurrentValueEquals0()
+        public void StartingChargerCaller_IsNotConnected_CurrentValueIsZero()
         {
 
             _uut.Connected = false;
