@@ -24,7 +24,7 @@ namespace LadeskabLibrary
 
 
 
-        public void SetDoorStateOpen()
+        public virtual void SetDoorStateOpen()
         {
             OnDoorStateOpen(new DoorOpenEventArgs {});
         }
@@ -36,7 +36,7 @@ namespace LadeskabLibrary
 
 
 
-        public void SetDoorStateClose()
+        public virtual void SetDoorStateClose()
         {
             OnDoorStateClose(new DoorCloseEventArgs {});
         }
