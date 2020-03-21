@@ -32,7 +32,9 @@ namespace Ladeskab.Unit.Test
             _uut = new StationControl(_display, _door, _logFile, _idSource, _chargeControl); 
         }
 
+        #region IDDetected
 
+        
         [TestCase(123456)]
         [TestCase(654321)]
         [TestCase(987654)]
@@ -41,6 +43,8 @@ namespace Ladeskab.Unit.Test
             _idSource.IdDetectedEvent += Raise.EventWith<RFDetectedEventArgs>(this, new RFDetectedEventArgs() { IdDetected = newId });            
             Assert.That(_uut.CurrentId, Is.EqualTo(newId));  
         }
+
+        #endregion
 
         #region DoorOpenTest
 
@@ -111,6 +115,9 @@ namespace Ladeskab.Unit.Test
         }
         #endregion
 
+        #region RFIdDetected_Avaliable
+
+
         [Test]
         public void RFIdDetectedCalled_MobileConnectedAndStateAvaliable_DoorLockedChargerStart()
         {
@@ -124,6 +131,7 @@ namespace Ladeskab.Unit.Test
 
             _display.DidNotReceive().PrintConnectingError();
         }
+
 
         [Test]
         public void RFIdDetectedCalled_MobileNotConnectedAndStateAvaliable_ConnectingError()
@@ -139,6 +147,9 @@ namespace Ladeskab.Unit.Test
             _display.DidNotReceive().PrintOccupied();
         }
 
+        #endregion
+
+        #region RFIdDetected_Locked
         [Test]
         public void RFIdDetectedCalled_MobileConnectedAndStateLocked_DoorUnlockedChargerStop_sameID()
         {
@@ -169,6 +180,10 @@ namespace Ladeskab.Unit.Test
             _display.DidNotReceive().PrintRemoveMobile();
         }
 
+        #endregion
+
+        #region RFIdDetected_DoorOpen
+
         [Test]
         public void RFIdDetectedCalled_StateOpen_NoMethodCallsReceived()
         {
@@ -181,7 +196,9 @@ namespace Ladeskab.Unit.Test
             _display.DidNotReceive().ReceivedCalls();
         }
 
-        
+        #endregion
+
+
 
 
 
