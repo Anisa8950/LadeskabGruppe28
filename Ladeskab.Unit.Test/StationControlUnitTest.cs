@@ -98,7 +98,7 @@ namespace Ladeskab.Unit.Test
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
 
             _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
-            _display.Received().PrintScanRFID();
+            _display.Received(1).PrintScanRFID();
         }
 
         [Test]

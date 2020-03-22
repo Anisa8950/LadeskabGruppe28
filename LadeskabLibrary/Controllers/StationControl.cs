@@ -44,8 +44,6 @@ namespace LadeskabLibrary
             _RFReader.IdDetectedEvent += HandelIdDetectedEvent;
 
             _state = LadeskabState.Available;
-            _door.UnlockDoor();
-            _display.PrintScanRFID();
         }
 
         //Handels
