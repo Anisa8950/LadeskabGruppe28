@@ -54,7 +54,7 @@ namespace LadeskabLibrary
 
         public void PrintRFIDError()
         {
-            ConsoleString = "Forkert RFID tag";
+            ConsoleString = "RFID fejl";
             Console.WriteLine(ConsoleString);
         }
 

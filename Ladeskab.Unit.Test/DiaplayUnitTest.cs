@@ -73,7 +73,7 @@ namespace Ladeskab.Unit.Test
         public void PrintRFIDError_CorrectString()
         {
             _uut.PrintRFIDError();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Forkert RFID tag"));
+            Assert.That(_uut.ConsoleString, Is.EqualTo("RFID fejl"));
         }
 
         [Test]

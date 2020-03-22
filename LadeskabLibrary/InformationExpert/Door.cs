@@ -23,7 +23,7 @@ namespace LadeskabLibrary
         public void UnlockDoor()
         {
             ConsoleString = "Døren er ulåst";
-           Console.WriteLine(ConsoleString); 
+            Console.WriteLine(ConsoleString); 
         }
 
 
