@@ -36,14 +36,14 @@ namespace Ladeskab.Unit.Test
         public void SetDoorStateOpen_HandelDoorOpenEvent_EventFired()
         {
             _uut.SetDoorStateOpen();
-            _stationControl.Received().DoorOpen();
+            _stationControl.Received(1).DoorOpen();
         }
 
         [Test]
         public void SetDoorStateClose_HandelDoorCloseEvent_EventFired()
         {
             _uut.SetDoorStateClose();
-            _stationControl.Received().DoorClosed();
+            _stationControl.Received(1).DoorClosed();
         }
 
         [Test]
