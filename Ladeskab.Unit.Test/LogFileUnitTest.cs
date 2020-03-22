@@ -10,7 +10,7 @@ namespace Ladeskab.Unit.Test
     public class LogFileUnitTest
     {
         private LogFile _uut;
-        private string _path = "C:\\Users\\stefi\\source\\repos\\LadeskabGruppe28\\LogFil.txt";
+        private string _path = "LadeskabLogFil.txt";
         private string[] allLines;
         private string[] inputFields;
 
