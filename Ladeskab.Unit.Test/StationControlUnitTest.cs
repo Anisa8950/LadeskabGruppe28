@@ -59,7 +59,6 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void DoorOpen_DoorstateDoorOpen_DisplayCalledOnce()
         {
-            //Arrange
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
 
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
@@ -69,7 +68,6 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void DoorOpen_DoorstateLocked_DisplayCalledOnce()
         {
-            //Arrange
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
             _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
             _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
@@ -94,7 +92,6 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void DoorClose_DoorstateDoorOpen_DisplayCalled()
         {
-            //Arrange
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
 
             _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());
@@ -104,7 +101,6 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void DoorClose_DoorstateLocked_DisplayCalledOnce()
         {
-            //Arrange
             _door.DoorOpenEvent += Raise.EventWith<DoorOpenEventArgs>(this, new DoorOpenEventArgs());
             _usbCharger.CurrentLevelEvent += Raise.EventWith<CurrentLevelEventArgs>(this, new CurrentLevelEventArgs() { Current = 1 });
             _door.DoorCloseEvent += Raise.EventWith<DoorCloseEventArgs>(this, new DoorCloseEventArgs());

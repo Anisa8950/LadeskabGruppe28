@@ -4,6 +4,7 @@ using LadeskabLibrary;
 using NSubstitute;
 using NSubstitute.Core.Arguments;
 using NSubstitute.ReceivedExtensions;
+using System.IO;
 
 
 namespace Ladeskab.Unit.Test
@@ -17,6 +18,7 @@ namespace Ladeskab.Unit.Test
         private IUsbCharger _usbCharger;
         private ChargeControl _chargeControl;
         private StationControl _stationControl;
+        public StringWriter stringWriter;
 
 
         [SetUp]
@@ -49,17 +51,28 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void UnlockedDoorCalled_Write()
         {
-            _uut.UnlockDoor();
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
 
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Døren er ulåst"));
+                _uut.UnlockDoor();
+            }
+
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Døren er ulåst\r\n"));
         }
 
         [Test]
         public void lockedDoorCalled_Write()
         {
-            _uut.LockDoor();
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
 
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Døren er låst"));
+                _uut.LockDoor();
+            }
+            
+
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Døren er låst\r\n"));
         }
 
     }

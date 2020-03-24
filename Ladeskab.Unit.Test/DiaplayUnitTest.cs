@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using LadeskabLibrary;
+using System.IO;
 
 
 namespace Ladeskab.Unit.Test
@@ -11,6 +12,7 @@ namespace Ladeskab.Unit.Test
     public class DiaplayUnitTest
     {
         private Display _uut;
+        public StringWriter stringWriter;
 
         [SetUp]
         public void Setup()
@@ -21,66 +23,117 @@ namespace Ladeskab.Unit.Test
         [Test]
         public void PrintChargingComplete_CorrectString()
         {
-            _uut.PrintChargingComplete();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Mobilelefon er fuld opladt"));
-            
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintChargingComplete();
+            }
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Mobilelefon er fuld opladt\r\n"));
         }
 
         [Test]
         public void PrintChargingError_CorrectString()
         {
-            _uut.PrintChargingError();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Fejl. Evt. kortslutning. Frakobel usb lader."));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintChargingError();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Fejl. Evt. kortslutning. Frakobel usb lader.\r\n"));
         }
 
         [Test]
         public void PrintChargingMobile_CorrectString()
         {
-            _uut.PrintChargingMobile();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Oplader mobil"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintChargingMobile();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Oplader mobil\r\n"));
         }
 
         [Test]
         public void PrintConnectingError_CorrectString()
         {
-            _uut.PrintConnectingError();
-            Assert.That(_uut.ConsoleString,
-                Is.EqualTo("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintConnectingError();
+            }
+            
+            Assert.That(stringWriter.ToString(),
+                Is.EqualTo("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt\r\n"));
         }
 
         [Test]
         public void PrintConnectMobile_CorrectString()
         {
-            _uut.PrintConnectMobile();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Tilslut mobiltelefon"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintConnectMobile();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Tilslut mobiltelefon\r\n"));
         }
 
         [Test]
         public void PrintOccupied_CorrectString()
         {
-            _uut.PrintOccupied();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op."));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintOccupied();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.\r\n"));
         }
 
         [Test]
         public void PrintRemoveMobile_CorrectString()
         {
-            _uut.PrintRemoveMobile();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Fjern mobiltelefon fra skab og luk døren"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintRemoveMobile();
+            }
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Fjern mobiltelefon fra skab og luk døren\r\n"));
         }
 
         [Test]
         public void PrintRFIDError_CorrectString()
         {
-            _uut.PrintRFIDError();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("RFID fejl"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintRFIDError();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("RFID fejl\r\n"));
         }
 
         [Test]
         public void PrintScanRFID_CorrectString()
         {
-            _uut.PrintScanRFID();
-            Assert.That(_uut.ConsoleString, Is.EqualTo("Indlæs RFID"));
+            using (stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                _uut.PrintScanRFID();
+            }
+            
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Indlæs RFID\r\n"));
         }
     }
 }

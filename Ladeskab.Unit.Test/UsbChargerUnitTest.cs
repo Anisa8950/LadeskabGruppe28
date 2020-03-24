@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Ladeskab.Unit.Test
 {
     [TestFixture]
-    class UsbChargerUnitTest
+    public class UsbChargerUnitTest
     {
 
         private UsbCharger _uut;
