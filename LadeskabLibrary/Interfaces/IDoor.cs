@@ -11,8 +11,6 @@ namespace LadeskabLibrary
         event EventHandler<DoorOpenEventArgs> DoorOpenEvent;
         event EventHandler<DoorCloseEventArgs> DoorCloseEvent;
 
-        string ConsoleString { get; set; }
-
         void LockDoor();
         void UnlockDoor();
     }
