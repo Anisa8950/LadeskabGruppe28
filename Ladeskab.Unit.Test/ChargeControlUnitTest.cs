@@ -31,7 +31,7 @@ namespace Ladeskab.Unit.Test
         [TestCase(5)]
         [TestCase(50)]
         [TestCase(100)]
-
+         
         public void CurrentChanged_DifferentArguments_CurrentValueIsCorrect(int newCurrent)
         {
             // Act: der bliver "raised an event"

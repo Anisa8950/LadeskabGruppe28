@@ -150,10 +150,9 @@ namespace Ladeskab.Unit.Test
             _uut.SimulateOverload(false);
             _uut.StartCharging();
 
-            // Assert.That(_uc.CurrentValue,Is.EqualTo(_uc.overload)); // der er ikke nogen property til overloadCurrent, hvordan tjekker man at currentvalue er lig med den. Siger man så 750
             Assert.That(_uut.Connected, Is.EqualTo(true));
         }
-        //Svar: Man kan ikke teste direkte at den tilstanden er overloaded, men man kan teste for at værdien på strømmen er over 750 ampere
+        
 
         [Test]
         public void SimulateOverload_Start_ReceivesHighValueImmediately()

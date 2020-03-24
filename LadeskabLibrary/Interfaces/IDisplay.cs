@@ -8,8 +8,6 @@ namespace LadeskabLibrary
 {
     public interface IDisplay
     {
-        string ConsoleString { get; set; }
-
         void PrintConnectMobile();
         void PrintScanRFID();
         void PrintConnectingError();

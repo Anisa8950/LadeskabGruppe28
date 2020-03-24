@@ -8,60 +8,50 @@ namespace LadeskabLibrary
 {
     public class Display : IDisplay
     {
-        public string ConsoleString { get; set; }
 
         public void PrintChargingComplete()
         {
-            ConsoleString = "Mobilelefon er fuld opladt";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Mobiltelefon er fuld opladt");
         }
 
         public void PrintChargingError()
         {
-            ConsoleString = "Fejl. Evt. kortslutning. Frakobel usb lader.";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Fejl. Evt. kortslutning. Frakobel usb lader.");
         }
 
         public void PrintChargingMobile()
         {
-            ConsoleString = "Oplader mobil";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Oplader mobil");
         }
 
         public void PrintConnectingError()
         {
-            ConsoleString = "Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Tilslutningsfejl.\r\n Tjek at mobiltelefon er tilsluttet korrekt");
         }
 
         public void PrintConnectMobile()
         {
-            ConsoleString = "Tilslut mobiltelefon";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Tilslut mobiltelefon");
         }
 
         public void PrintOccupied()
         {
-            ConsoleString = "Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Skabet er låst og din mobiltelefon lades. Brug dit RFID tag til at låse op.");
         }
 
         public void PrintRemoveMobile()
         {
-            ConsoleString = "Fjern mobiltelefon fra skab og luk døren";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Fjern mobiltelefon fra skab og luk døren");
         }
 
         public void PrintRFIDError()
         {
-            ConsoleString = "RFID fejl";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("RFID fejl");
         }
 
         public void PrintScanRFID()
         {
-            ConsoleString = "Indlæs RFID";
-            Console.WriteLine(ConsoleString);
+            Console.WriteLine("Indlæs RFID");
         }
     }
 }
